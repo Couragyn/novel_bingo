@@ -4,6 +4,8 @@ class CreateSquares < ActiveRecord::Migration[5.0]
       t.references :card, index: true, foreign_key: {on_delete: :cascade}
       t.string :name
       t.integer :position
+      t.text :description
+      t.text :hard
 
       t.timestamps
     end
