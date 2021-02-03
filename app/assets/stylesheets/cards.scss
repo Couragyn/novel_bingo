@@ -1,3 +1,44 @@
 // Place all the styles related to the cards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url(http://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.square {
+    float:left;
+    position: relative;
+    width: 19%;
+    padding-bottom : 19%; /* = width for a 1:1 aspect ratio */
+    margin:0.5%;
+    background-color:#1E1E1E;
+    overflow:hidden;
+}
+
+.content {
+    position:absolute;
+    height:100%; /* = 100% - 2*5% padding */
+    width:100%; /* = 100% - 2*5% padding */
+    padding: 0%;
+}
+.table{
+    display:table;
+    width:100%;
+    height:100%;
+}
+.table-cell{
+    display: table-cell;
+    vertical-align:middle;
+    color: white;
+
+}
+body {
+    font-size:20px;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #fff;
+    background:#ECECEC;
+}
+p{
+    margin:0;
+    padding:0;
+    text-align:left;
+}

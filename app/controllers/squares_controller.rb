@@ -8,6 +8,7 @@ class SquaresController < ApplicationController
 
   # GET /squares/1 or /squares/1.json
   def show
+    @square = Square.find params[:id]
   end
 
   # GET /squares/new
