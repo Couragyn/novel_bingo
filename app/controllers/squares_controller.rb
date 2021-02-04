@@ -9,8 +9,14 @@ class SquaresController < ApplicationController
   # GET /squares/1 or /squares/1.json
   def show
     @square = Square.find params[:id]
-  end
 
+    respond_to do |format|
+      format.html # show.html.erb
+      format.js # show.js.erb
+      format.json { render json: @book }
+    end
+  end
+  
   # GET /squares/new
   def new
     @square = Square.new

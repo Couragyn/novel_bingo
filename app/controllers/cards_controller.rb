@@ -10,6 +10,12 @@ class CardsController < ApplicationController
   def show
     @card = Card.find (params[:id])
     @squares = Square.where(card_id: @card.id).all
+
+    respond_to do |format|
+        format.html # show.html.erb
+        format.js # show.js.erb
+        format.json { render json: @book }
+    end
   end
 
   # GET /cards/new

@@ -1,0 +1,21 @@
+ 
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @square.name %>
+</p>
+
+<p>
+  <b>description:</b>
+  <%= @square.description %>
+</p>
+
+<p>
+  <b>hard:</b>
+  <%= @square.hard %>
+</p>
+
+<%= link_to 'Edit', edit_square_path(@square) %> |
+<%= link_to 'Destroy', @square, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+<%= link_to 'Back', squares_path %>
