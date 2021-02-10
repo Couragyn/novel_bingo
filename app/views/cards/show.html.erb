@@ -9,9 +9,32 @@
       <% end %>
         <div class="content">
           <td>
-            <div class="image"><%= image_tag(asset_url("blank.jpg")) %></div>
+            <%= image_pack_tag 'blank.jpg' %>
             <h6 class="text"><%= square.name %></h6>
-            <%= link_to 'View Details', square, remote: true %>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= square.id %>">
+              View Details
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal-<%= square.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><%= square.name %></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </td>
         </div>
       <% if ([4, 9, 14, 19, 24].include? i) %>
@@ -20,8 +43,7 @@
     <% end %>
   </tbody>
 </table>
-<%= render "layouts/modal" %>
-
 
 <%= link_to 'Edit', edit_card_path(@card) %> |
 <%= link_to 'Back', cards_path %>
+
