@@ -13,6 +13,7 @@ import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 require.context('../images', true)
 import "./stylesheets";
+import "rails_bootstrap_forms";
 
 import '../src/javascript/cable.js';
 import '../src/javascript/cards.js';

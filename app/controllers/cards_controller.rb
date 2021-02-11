@@ -4,12 +4,14 @@ class CardsController < ApplicationController
   # GET /cards or /cards.json
   def index
     @cards = Card.where(private: false).all
+
+
   end
 
   # GET /cards/1 or /cards/1.json
   def show
     @card = Card.find (params[:id])
-    @squares = Square.where(card_id: @card.id).all
+    @squares = Square.where(card_id: @card.id).order("id ASC").all
 
     respond_to do |format|
         format.html # show.html.erb
@@ -21,6 +23,7 @@ class CardsController < ApplicationController
   # GET /cards/new
   def new
     @card = Card.new
+    25.times {@card.squares.build} 
   end
 
   # GET /cards/1/edit
@@ -72,6 +75,6 @@ class CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.fetch(:card, {})
+      params.fetch(:card, {}).permit(:name, squares_attributes: [:description, :name, :hard])
     end
 end

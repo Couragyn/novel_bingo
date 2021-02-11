@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :bingos
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get '/' => 'index#show'
+  root to: 'index#show'
 end

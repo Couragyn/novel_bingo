@@ -1,4 +1,21 @@
-<%= form_for(card) do |f| %>
+<%= form_for(@card) do |f| %>
+  <%= f.text_field :name %>
+  <ul>
+  <%= f.nested_fields_for :squares do |squares_form| %>
+    <li>
+      <%= squares_form.text_field :name %>
+    </li>
+    <li>
+      <%= squares_form.text_area :description %>
+    </li>
+    <li>
+      <%= squares_form.text_area :hard %>
+    </li>
+  <% end %>
+  </ul>
+        
+
+
   <% if card.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>

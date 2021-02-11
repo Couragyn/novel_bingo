@@ -43,10 +43,11 @@ class SquaresController < ApplicationController
 
   # PATCH/PUT /squares/1 or /squares/1.json
   def update
+    @card = Card.find (@square.card_id)
     respond_to do |format|
       if @square.update(square_params)
-        format.html { redirect_to @square, notice: "Square was successfully updated." }
-        format.json { render :show, status: :ok, location: @square }
+        format.html { redirect_to @card, notice: "Square was successfully updated." }
+        format.json { render :show, status: :ok, location: @card }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @square.errors, status: :unprocessable_entity }
@@ -71,6 +72,6 @@ class SquaresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def square_params
-      params.fetch(:square, {})
+      params.fetch(:square, {}).permit(:name, :description, :hard)
     end
 end

@@ -1,0 +1,34 @@
+<div class="modal fade" id="modal-<%= square.id %>" tabindex="-1" role="dialog" aria-labelledby="<%= square.id %>" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="<%= square.id %>"><%= square.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% if (current_user.id == @card.user_id) %>
+          <%= bootstrap_form_for(square) do |f| %>
+
+            <%= f.text_field :name, value: square.name, class: "form-control" %>
+
+            <%= f.text_area :description, value: square.description, class: "form-control", rows: 4 %>
+
+            <%= f.text_area :hard, value: square.hard, class: "form-control", rows: 2, label: "Hard Mode" %>
+
+            <%= f.submit 'Save Changes', class: "btn btn-primary float-right" %>
+          <% end %>
+        <% else %>
+          <p><strong>Description: </strong><%= square.description %></p>
+          <% if square.hard %>
+            <p><strong>Hard Mode: </strong><%= square.hard %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+      </div>
+    </div>
+  </div>
+</div>
