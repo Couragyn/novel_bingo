@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-
-<table class="table table-bordered">
+<h1 class="text-center"><%= @card.name %></h1>
+<table class="table-responsive table-bordered">
   <tbody>
     <% @squares.each_with_index do |square, i| %>
       <% if ([0, 5, 10, 15, 20].include? i) %>

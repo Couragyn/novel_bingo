@@ -75,6 +75,6 @@ class CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.fetch(:card, {}).permit(:name, squares_attributes: [:description, :name, :hard])
+      params.require(:card).permit(:name, :user_id, squares_attributes: [:square_id, :name, :_destroy])
     end
 end

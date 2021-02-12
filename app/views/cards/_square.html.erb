@@ -9,26 +9,29 @@
       </div>
       <div class="modal-body">
         <% if (current_user.id == @card.user_id) %>
-          <%= bootstrap_form_for(square) do |f| %>
-
-            <%= f.text_field :name, value: square.name, class: "form-control" %>
-
-            <%= f.text_area :description, value: square.description, class: "form-control", rows: 4 %>
-
+          <%= form_for(square) do |f| %>
+            <%= f.label :name, 'Square Name:' %>
+            <%= f.text_field :name, value: square.name, class: "form-control", required: true %>
+            <%= f.label :name, 'Description:' %>
+            <%= f.text_area :description, value: square.description, class: "form-control", rows: 4, required: true %>
+            <%= f.label :name, 'Hard Mode:' %>
             <%= f.text_area :hard, value: square.hard, class: "form-control", rows: 2, label: "Hard Mode" %>
-
+          </div>
+          <div class="modal-footer">
             <%= f.submit 'Save Changes', class: "btn btn-primary float-right" %>
-          <% end %>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+          </div>          
+        <% end %>
         <% else %>
           <p><strong>Description: </strong><%= square.description %></p>
           <% if square.hard %>
             <p><strong>Hard Mode: </strong><%= square.hard %></p>
           <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+          </div>          
         <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
-      </div>
     </div>
   </div>
 </div>

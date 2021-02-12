@@ -1,20 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <%= form_for(@card) do |f| %>
-  <%= f.text_field :name %>
-  <ul>
+  <h3>Create New Bingo Card</h3>
+  <div class="form-group">
+    <%= f.label :name, 'Bingo Card Name' %>
+    <%= f.text_field :name, class: 'form-control', :required => true %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <!-- Creates 25 empty squares -->
   <%= f.fields_for :squares do |squares_form| %>
-    <li>
-      <%= squares_form.text_field :name %>
-    </li>
-    <li>
-      <%= squares_form.text_area :description %>
-    </li>
-    <li>
-      <%= squares_form.text_area :hard %>
-    </li>
+    <div class="form-group">
+      <%= squares_form.hidden_field :name, value: '' %>
+    </div>
   <% end %>
-  </ul>
+
+  <% if @card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+      <ul>
+      <% @card.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

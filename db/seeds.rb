@@ -16,7 +16,7 @@ User.destroy_all
 puts "  >> Seeding tables ..."
 test_user = User.create(:email => "test@test.com", :password => "qwaszx", :password_confirmation => "qwaszx", :username => 'novel_bingo')
 
-fantasy_card = Card.create(:user => test_user, :featured => true, :name => "r/Fantasy 2020 Book Bingo")
+fantasy_card = Card.create(:user => test_user, :featured => true, :name => "r/Fantasy 2020 Book Bingo", :status => "active")
 
 Square.create(:card => fantasy_card, :name => "Novel Translated from its Original Language", :position => 1, :description => "The spirit of this square would be to read a book that's originally not written in English. But you can also read books in another language you speak. Doesn't matter what language you read the book in, as long as it's not the original language it was first published in.", :hard => "Written by a woman. Coauthor does not count.")
 Square.create(:card => fantasy_card, :name => "Setting Featuring Snow, Ice, or Cold", :position => 2, :description => "This setting must used be for a good portion of the book.", :hard => "The entire book takes place in this setting.")
