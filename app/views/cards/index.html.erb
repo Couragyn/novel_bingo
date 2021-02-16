@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Cards</h1>
+<h1>Bingo Cards</h1>
 
 <table>
   <thead>
@@ -12,9 +12,10 @@
   <tbody>
     <% @cards.each do |card| %>
       <tr>
-        <td><%= link_to 'Show', card %></td>
+        <td><%= link_to card.name, card %></td>
+        
         <td><%= link_to 'Edit', edit_card_path(card) %></td>
-        <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

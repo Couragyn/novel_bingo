@@ -3,27 +3,27 @@
   <head>
     <title>NovelBingo</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
-        <a class="navbar-brand" href="/">The Idea App</a>
+        <a class="navbar-brand" href="/">Novel Bingo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/ideas">Ideas</a>
+              <a class="nav-link" href="/cards">Bingo Cards</a>
             </li>
             <p class="navbar-text float-right">
               <% if user_signed_in? %>
-                Logged in as <strong><%= current_user.email %></strong>.
+                <i class="fas fa-user"></i> <strong><%= current_user.username %></strong>.
                 <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
                 <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
               <% else %>
@@ -40,15 +40,5 @@
     <div class="container">
       <%= yield %>
     </div>
-
-
-    <footer>
-      <div class="container">
-        Rails Girls <%= Time.now.year %>
-      </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -8,8 +8,15 @@ class SquaresController < ApplicationController
 
   # GET /squares/1 or /squares/1.json
   def show
-  end
+    @square = Square.find params[:id]
 
+    respond_to do |format|
+      format.html # show.html.erb
+      format.js # show.js.erb
+      format.json { render json: @book }
+    end
+  end
+  
   # GET /squares/new
   def new
     @square = Square.new
@@ -36,10 +43,11 @@ class SquaresController < ApplicationController
 
   # PATCH/PUT /squares/1 or /squares/1.json
   def update
+    @card = Card.find (@square.card_id)
     respond_to do |format|
       if @square.update(square_params)
-        format.html { redirect_to @square, notice: "Square was successfully updated." }
-        format.json { render :show, status: :ok, location: @square }
+        format.html { redirect_to @card, notice: "Square was successfully updated." }
+        format.json { render :show, status: :ok, location: @card }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @square.errors, status: :unprocessable_entity }
@@ -64,6 +72,6 @@ class SquaresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def square_params
-      params.fetch(:square, {})
+      params.fetch(:square, {}).permit(:name, :description, :hard)
     end
 end

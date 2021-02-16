@@ -1,4 +1,35 @@
 <p id="notice"><%= notice %></p>
 
+<h1 class="text-center"><%= @card.name %></h1>
+<table class="table-responsive table-bordered">
+  <tbody>
+    <% @squares.each_with_index do |square, i| %>
+      <% if ([0, 5, 10, 15, 20].include? i) %>
+        <tr>
+      <% end %>
+        <div class="content">
+          <td>
+            <%= image_pack_tag 'blank.jpg' %>
+            <h6 class="text"><%= square.name %></h6>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= square.id %>">
+              <% if (current_user.id == @card.user_id) %>
+                Edit Square
+              <% else %> 
+                View Details
+              <% end %> 
+            </button>
+
+            <%= render 'square', square: square, card: @card %>
+          </td>
+        </div>
+      <% if ([4, 9, 14, 19, 24].include? i) %>
+        <tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_card_path(@card) %> |
 <%= link_to 'Back', cards_path %>
+
