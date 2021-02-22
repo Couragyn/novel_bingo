@@ -16,10 +16,11 @@ The initial idea for Novel Bingo came from Reddit's r/fantasy reading bingo. Bas
 4. Set up ruby environment:
    - `bundle update --bundler`
    - `bundle install`
-5. Set up database:
+6. Create `.env` from `env.example` file
+7. Set up database:
    - `rake db:migrate`
    - `rake db:seed`
-6. Start rails:
+8. Start rails:
    - `rails s`
 
 ## Stack

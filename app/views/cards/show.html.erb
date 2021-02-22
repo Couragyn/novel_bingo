@@ -1,6 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1 class="text-center"><%= @card.name %></h1>
+<% if (current_user.id == @card.user_id) %>
+  <%= form_for(@card) do |f| %>
+    <%= f.label :name, 'Bingo Card Name:' %>
+    <%= f.text_field :name, value: @card.name, class: "form-control", required: true %>
+    <%= f.submit 'Save New Card Name', class: "btn btn-primary float-right" %>
+  <% end %> 
+  <br /><br />
+<% else %>          
+  <h1 class="text-center"><%= @card.name %></h1>
+<% end %> 
 <table class="table-responsive table-bordered">
   <tbody>
     <% @squares.each_with_index do |square, i| %>
@@ -9,18 +18,20 @@
       <% end %>
         <div class="content">
           <td>
+          <% if square.description %>
             <%= image_pack_tag 'blank.jpg' %>
             <h6 class="text"><%= square.name %></h6>
-
+          <% end %>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= square.id %>">
-              <% if (current_user.id == @card.user_id) %>
+              <% if square.description && (current_user.id == @card.user_id) %>
                 Edit Square
+              <% elsif (not square.description) && (current_user.id == @card.user_id) %>
+                Add Square
               <% else %> 
                 View Details
               <% end %> 
             </button>
-
-            <%= render 'square', square: square, card: @card %>
+            <%= render 'square', square: square, card: @card, location: i %>
           </td>
         </div>
       <% if ([4, 9, 14, 19, 24].include? i) %>

@@ -10,17 +10,24 @@
       <div class="modal-body">
         <% if (current_user.id == @card.user_id) %>
           <%= form_for(square) do |f| %>
-            <%= f.label :name, 'Square Name:' %>
-            <%= f.text_field :name, value: square.name, class: "form-control", required: true %>
-            <%= f.label :name, 'Description:' %>
-            <%= f.text_area :description, value: square.description, class: "form-control", rows: 4, required: true %>
-            <%= f.label :name, 'Hard Mode:' %>
-            <%= f.text_area :hard, value: square.hard, class: "form-control", rows: 2, label: "Hard Mode" %>
-          </div>
-          <div class="modal-footer">
-            <%= f.submit 'Save Changes', class: "btn btn-primary float-right" %>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
-          </div>          
+            <div class="form-group"> 
+              <!--<% if (location === 12) %>
+                <%= f.check_box :free %>
+                <%= f.label :free, 'Free Square?' %>
+                <br />
+              <% end %>-->
+              <%= f.label :name, 'Square Name:' %>
+              <%= f.text_field :name, value: square.name, class: "form-control", required: true %>
+              <%= f.label :name, 'Description:' %>
+              <%= f.text_area :description, value: square.description, class: "form-control", rows: 4, required: true %>
+              <%= f.label :name, 'Hard Mode:' %>
+              <%= f.text_area :hard, value: square.hard, class: "form-control", rows: 2, label: "Hard Mode" %>
+            </div>
+            <div class="modal-footer">
+              <%= f.submit 'Save Changes', class: "btn btn-primary float-right" %>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+            </div>   
+          </div>       
         <% end %>
         <% else %>
           <p><strong>Description: </strong><%= square.description %></p>
