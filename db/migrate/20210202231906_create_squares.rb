@@ -6,6 +6,8 @@ class CreateSquares < ActiveRecord::Migration[5.0]
       t.integer :position
       t.text :description
       t.text :hard
+      t.string :status
+      t.boolean :free, :default => false
 
       t.timestamps
     end

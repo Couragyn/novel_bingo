@@ -1,0 +1,50 @@
+<div class="modal fade" id="modal-<%= square.id %>" tabindex="-1" role="dialog" aria-labelledby="<%= square.id %>" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="<%= square.id %>"><%= square.name %></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="list-group-item active"><a href="#book-<%= square.id %>" aria-controls="home" role="tab" data-toggle="tab">Book</a>
+                </li>
+                <li role="presentation" class="list-group-item"><a href="#description-<%= square.id %>" aria-controls="profile" role="tab" data-toggle="tab">Square Description</a>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="book-<%= square.id %>">
+                    <div class="text-center">
+                        <%= image_pack_tag 'blank.jpg' %>
+                    </div>
+
+                    <p>Title: 
+                        <% if @bingo_squares[i].isbn %>
+                            pulled title
+                        <% else %>
+                            -
+                        <% end %>
+                    </p>
+
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="description-<%= square.id %>">
+                    <h1>fasfas</h1>
+                    <p><strong>Description: </strong><%= square.description %></p>
+                    <% if square.hard %>
+                        <p><strong>Hard Mode: </strong><%= square.hard %></p>
+                    <% end %>
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+            </div>          
+        </div>
+    </div>
+</div>

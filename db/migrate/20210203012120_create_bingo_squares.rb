@@ -2,6 +2,8 @@ class CreateBingoSquares < ActiveRecord::Migration[5.0]
   def change
     create_table :bingo_squares do |t|
       t.references :bingo, index: true, foreign_key: {on_delete: :cascade}
+      t.references :card, index: true, foreign_key: {on_delete: :cascade}
+      t.references :square, index: true, foreign_key: {on_delete: :cascade}
       t.text :review
       t.string :isbn
       t.string :status

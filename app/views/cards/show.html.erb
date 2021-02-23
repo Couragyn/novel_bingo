@@ -4,12 +4,15 @@
   <%= form_for(@card) do |f| %>
     <%= f.label :name, 'Bingo Card Name:' %>
     <%= f.text_field :name, value: @card.name, class: "form-control", required: true %>
-    <%= f.submit 'Save New Card Name', class: "btn btn-primary float-right" %>
+    <%= f.submit 'Save New Card Name', class: "btn btn-primary float-right m-2" %>
   <% end %> 
   <br /><br />
 <% else %>          
   <h1 class="text-center"><%= @card.name %></h1>
 <% end %> 
+
+<%= link_to "Add to My Bingos", {:controller => "bingos", :action => "add_card_to_my_bingo", :card => @card.id }, :method => :post, class: "btn btn-success m-2" %>
+
 <table class="table-responsive table-bordered">
   <tbody>
     <% @squares.each_with_index do |square, i| %>
@@ -40,7 +43,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Edit', edit_card_path(@card) %> |
-<%= link_to 'Back', cards_path %>
-

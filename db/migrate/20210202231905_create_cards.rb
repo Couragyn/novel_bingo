@@ -5,6 +5,7 @@ class CreateCards < ActiveRecord::Migration[5.0]
       t.boolean :private, :default => false
       t.boolean :featured, :default => false
       t.string :name
+      t.string :status
 
       t.timestamps
     end

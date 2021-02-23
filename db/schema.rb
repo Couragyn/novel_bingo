@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_233424) do
+ActiveRecord::Schema.define(version: 2021_02_03_012120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bingo_squares", id: :serial, force: :cascade do |t|
     t.integer "bingo_id"
+    t.integer "card_id"
+    t.integer "square_id"
     t.text "review"
     t.string "isbn"
     t.string "status"
@@ -25,6 +27,8 @@ ActiveRecord::Schema.define(version: 2021_02_18_233424) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bingo_id"], name: "index_bingo_squares_on_bingo_id"
+    t.index ["card_id"], name: "index_bingo_squares_on_card_id"
+    t.index ["square_id"], name: "index_bingo_squares_on_square_id"
   end
 
   create_table "bingos", id: :serial, force: :cascade do |t|
@@ -41,9 +45,9 @@ ActiveRecord::Schema.define(version: 2021_02_18_233424) do
     t.boolean "private", default: false
     t.boolean "featured", default: false
     t.string "name"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
@@ -53,9 +57,10 @@ ActiveRecord::Schema.define(version: 2021_02_18_233424) do
     t.integer "position"
     t.text "description"
     t.text "hard"
+    t.string "status"
+    t.boolean "free", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "free", default: false
     t.index ["card_id"], name: "index_squares_on_card_id"
   end
 
@@ -73,6 +78,8 @@ ActiveRecord::Schema.define(version: 2021_02_18_233424) do
   end
 
   add_foreign_key "bingo_squares", "bingos", on_delete: :cascade
+  add_foreign_key "bingo_squares", "cards", on_delete: :cascade
+  add_foreign_key "bingo_squares", "squares", on_delete: :cascade
   add_foreign_key "bingos", "cards"
   add_foreign_key "bingos", "users", on_delete: :cascade
   add_foreign_key "cards", "users"
